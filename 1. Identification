@@ -1,0 +1,1 @@
+if we are doing a question and it is a brute approach. we have used nested for loops and j is dependednt on i, then we know we can use stack here for better approach.
