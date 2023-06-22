@@ -1,0 +1,30 @@
+Given a circular integer array nums (i.e., the next element of nums[nums.length - 1] is nums[0]), return the next greater number for every element in nums.
+
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& nums) {
+        int n = nums.size();
+
+        stack<int> st;
+        vector<int> ans(n);
+        for(int i = 2*n-1; i >= 0; i--) {
+            while(!st.empty() && nums[i%n] >= st.top()) st.pop();
+            if(i < n) {
+                if(st.empty()) ans[i] = -1;
+                else ans[i] = st.top();
+            }
+            st.push(nums[i%n]);
+        }
+        return ans;
+    }
+};
+
+2N-1 for iterating on the array twice without making another array!
+i%n since circular. so that you can directly access without making duplicate array
+
+TC - O(2n + 2n)
+SC - O(n)
+
+2n - for loop for twice the array
+2n - while loop. the elements comes and pops out twice
+n - stack space
